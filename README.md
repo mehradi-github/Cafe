@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Simulating Server Response with Mock Service Worker
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -35,4 +35,39 @@ src/index.tsx
 
 ```javascript
 import 'bootstrap/dist/css/bootstrap.min.css';
+```
+
+## Simulating Data from Server
+
+Mock by intercepting requests on the network level: [https://mswjs.io/docs/basics/response-resolver](https://mswjs.io/docs/basics/response-resolver)
+
+```sh
+npm i -D msw
+```
+
+Configure server: [https://mswjs.io/docs/getting-started/integrate/node](https://mswjs.io/docs/getting-started/integrate/node)
+
+file src/mocks/server.ts
+
+```javascript
+import { setupServer } from 'msw/node';
+import { handlers } from './handlers';
+
+// This configures a request mocking server with the given request handlers.
+export const server = setupServer(...handlers);
+```
+
+file src/setupTests.ts
+
+```javascript
+import { server } from './mocks/server';
+// Establish API mocking before all tests.
+beforeAll(() => server.listen());
+
+// Reset any request handlers that we may add during the tests,
+// so they don't affect other tests.
+afterEach(() => server.resetHandlers());
+
+// Clean up after the tests are finished.
+afterAll(() => server.close());
 ```
