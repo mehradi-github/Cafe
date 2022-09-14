@@ -6,24 +6,29 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { formatCurrency } from '../utilities';
 
-declare type OrderDetail = (
-  | ((itemName: string, newItemCount: string, optionType: OptionType) => void)
-  | {
-      totals: TotalsType;
-      scoops: Map<string, number>;
-      toppings: Map<string, number>;
-    }
-)[];
-const OrderDetails = createContext<OrderDetail | null>(null);
+interface OrderDetail {
+  resetOrder: () => void;
+  updateItemCount: (
+    itemName: string,
+    newItemCount: string,
+    optionType: OptionType
+  ) => void;
+  totals: TotalsType;
+  optionCounts: OptionCountType;
+}
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const OrderDetails = createContext<OrderDetail>();
 
-export const useOrderDetail = () => {
-  const context = useContext<OrderDetail | null>(OrderDetails);
+export const useOrderDetails = () => {
+  const context = useContext<OrderDetail>(OrderDetails);
 
-  if (!context)
-    throw new Error(
-      'useOrderDetails must be used within an OrderDetailsProvider'
-    );
+  // if (!context)
+  //   throw new Error(
+  //     'useOrderDetails must be used within an OrderDetailsProvider'
+  //   );
 
   return context;
 };
@@ -34,11 +39,11 @@ export declare type OptionCountType = {
   toppings: Map<string, number>;
 };
 export declare type TotalsType = {
-  scoops: number;
-  toppings: number;
-  grandTotal: number;
+  scoops: string;
+  toppings: string;
+  grandTotal: string;
 };
-export const priceOption = new Map<OptionType, number>([
+export const pricePerItem = new Map<OptionType, number>([
   ['scoops', 2],
   ['toppings', 1.5],
 ]);
@@ -49,19 +54,22 @@ const calculateSubTotals = (
 ) => {
   return (
     Array.from(optionCounts[optionType].values()).reduce((p, c) => p + c, 0) *
-    (priceOption.get('scoops') ?? 0)
+    (pricePerItem.get('scoops') ?? 0)
   );
 };
 
-export const OrderDetailsProvider: FC<OrderDetail> = (props) => {
+export const OrderDetailsProvider: React.JSXElementConstructor<{
+  children: React.ReactElement;
+}> = (props) => {
   const [optionCounts, setOptionCounts] = useState<OptionCountType>({
     scoops: new Map<string, number>(),
     toppings: new Map<string, number>(),
   });
+  const zeroCurrency = formatCurrency(0);
   const [totals, setTotals] = useState<TotalsType>({
-    scoops: 0,
-    toppings: 0,
-    grandTotal: 0,
+    scoops: zeroCurrency,
+    toppings: zeroCurrency,
+    grandTotal: zeroCurrency,
   });
 
   useEffect(() => {
@@ -69,9 +77,9 @@ export const OrderDetailsProvider: FC<OrderDetail> = (props) => {
     const PriceToppings = calculateSubTotals('toppings', optionCounts);
     const PriceGrandTotal = PriceScoops + PriceToppings;
     setTotals({
-      scoops: PriceScoops,
-      toppings: PriceToppings,
-      grandTotal: PriceGrandTotal,
+      scoops: formatCurrency(PriceScoops),
+      toppings: formatCurrency(PriceToppings),
+      grandTotal: formatCurrency(PriceGrandTotal),
     });
   }, [optionCounts]);
 
@@ -92,8 +100,13 @@ export const OrderDetailsProvider: FC<OrderDetail> = (props) => {
       optionContsMap.set(itemName, parseInt(newItemCount));
       setOptionCounts(newOptionCounts);
     }
-
-    return [{ ...optionCounts, totals }, updateItemCount, resetOrder];
+    const result: OrderDetail = {
+      resetOrder,
+      updateItemCount,
+      totals,
+      optionCounts,
+    };
+    return result;
   }, [optionCounts, totals]);
 
   return <OrderDetails.Provider value={value} {...props} />;

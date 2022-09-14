@@ -22,9 +22,9 @@ function App() {
     //       </a>
     //     </header>
     //   </div>
-    // <OrderDetailsProvider>
-    //   <OrderEntry />
-    // </OrderDetailsProvider>
+    <OrderDetailsProvider>
+      <OrderEntry />
+    </OrderDetailsProvider>
   );
 }
 
