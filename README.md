@@ -77,5 +77,13 @@ Mock Service Worker REST API:
 [https://mswjs.io/docs/getting-started/mocks/rest-api](https://mswjs.io/docs/getting-started/mocks/rest-api)
 
 Testing Library waitFor Method:
-
 [https://testing-library.com/docs/dom-testing-library/api-async#waitfor](https://testing-library.com/docs/dom-testing-library/api-async#waitfor)
+
+Kent C.Dodds Blog Post on Context with Embedded State
+[https://kentcdodds.com/blog/application-state-management-with-react](https://kentcdodds.com/blog/application-state-management-with-react)
+
+Testing Library Documentation for Creating Custom render Method
+[https://testing-library.com/docs/react-testing-library/setup#custom-render](https://testing-library.com/docs/react-testing-library/setup#custom-render)
+
+React Testing Library Documentation on Skipping Auto Cleanup
+[https://testing-library.com/docs/react-testing-library/setup#skipping-auto-cleanup](https://testing-library.com/docs/react-testing-library/setup#skipping-auto-cleanup)
