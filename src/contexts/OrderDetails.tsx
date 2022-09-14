@@ -1,6 +1,5 @@
 import React, {
   createContext,
-  FC,
   useContext,
   useEffect,
   useMemo,
@@ -54,7 +53,7 @@ const calculateSubTotals = (
 ) => {
   return (
     Array.from(optionCounts[optionType].values()).reduce((p, c) => p + c, 0) *
-    (pricePerItem.get('scoops') ?? 0)
+    (pricePerItem.get(optionType) ?? 0)
   );
 };
 
