@@ -17,4 +17,8 @@ export const handlers = [
       ])
     );
   }),
+
+  rest.post('http://localhost:8081/order', (req, res, ctx) => {
+    return res(ctx.json({ orderNumber: 123456789 }));
+  }),
 ];

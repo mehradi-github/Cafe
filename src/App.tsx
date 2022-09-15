@@ -1,31 +1,36 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
+import { Container } from 'react-bootstrap';
+import OrderConfirmation from './confirmation/OrderConfirmation';
 // import logo from './logo.svg';
-import './App.css';
-import OrderEntry from './pages/entry/OrderEntry';
+// import './App.css';
 import { OrderDetailsProvider } from './contexts/OrderDetails';
+import OrderEntry from './pages/entry/OrderEntry';
+import OrderSummary from './summary/OrderSummary';
+import { OrderPhase } from './summary/SummaryForm';
 
-function App() {
+const App: FC = () => {
+  const [orderPhase, setOrderPhase] = useState('inProgress');
+
+  let Component: FC<OrderPhase> | undefined;
+  switch (orderPhase) {
+    case 'inProgress':
+      Component = OrderEntry;
+      break;
+    case 'review':
+      Component = OrderSummary;
+      break;
+    case 'completed':
+      Component = OrderConfirmation;
+      break;
+    default:
+      Component = OrderEntry;
+      break;
+  }
+
   return (
-    //   <div className="App">
-    //     <header className="App-header">
-    //       <img src={logo} className="App-logo" alt="logo" />
-    //       <p>
-    //         Edit <code>src/App.tsx</code> and save to reload.
-    //       </p>
-    //       <a
-    //         className="App-link"
-    //         href="https://reactjs.org"
-    //         target="_blank"
-    //         rel="noopener noreferrer"
-    //       >
-    //         Learn React
-    //       </a>
-    //     </header>
-    //   </div>
     <OrderDetailsProvider>
-      <OrderEntry />
+      <Container>{<Component setOrderPhase={setOrderPhase} />}</Container>
     </OrderDetailsProvider>
   );
-}
-
+};
 export default App;
