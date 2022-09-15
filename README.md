@@ -1,6 +1,6 @@
-# Simulating Server Response with Mock Service Worker
+# Simulating server response and test components without server
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simulating server response with Mock Service Worker
 
 ## Set up ESLint, Prettier and React Bootstrap
 

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, Fragment, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import OrderConfirmation from './confirmation/OrderConfirmation';
 // import logo from './logo.svg';
@@ -29,7 +29,12 @@ const App: FC = () => {
 
   return (
     <OrderDetailsProvider>
-      <Container>{<Component setOrderPhase={setOrderPhase} />}</Container>
+      <Container>
+        <h3 style={{ color: 'green' }}>
+          Simulating server response and test components without server
+        </h3>
+        {<Component setOrderPhase={setOrderPhase} />}
+      </Container>
     </OrderDetailsProvider>
   );
 };
