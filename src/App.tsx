@@ -1,5 +1,5 @@
 import React, { FC, Fragment, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Alert, Container } from 'react-bootstrap';
 import OrderConfirmation from './confirmation/OrderConfirmation';
 // import logo from './logo.svg';
 // import './App.css';
@@ -30,9 +30,11 @@ const App: FC = () => {
   return (
     <OrderDetailsProvider>
       <Container>
-        <h3 style={{ color: 'green' }}>
-          Simulating server response and test components without server
-        </h3>
+        <Alert variant={'success'}>
+          Simulating server response and test components <b>without server</b>{' '}
+          😊( if you see alart: An unexpected error ocurrd.)
+        </Alert>
+
         {<Component setOrderPhase={setOrderPhase} />}
       </Container>
     </OrderDetailsProvider>
