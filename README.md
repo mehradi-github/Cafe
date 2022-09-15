@@ -87,3 +87,14 @@ Testing Library Documentation for Creating Custom render Method
 
 React Testing Library Documentation on Skipping Auto Cleanup
 [https://testing-library.com/docs/react-testing-library/setup#skipping-auto-cleanup](https://testing-library.com/docs/react-testing-library/setup#skipping-auto-cleanup)
+
+[logTestingPlaygroundURL](https://testing-library.com/docs/queries/about/#screenlogtestingplaygroundurl):
+
+For debugging using [testing-playground](https://testing-playground.com), screen exposes this convenient method which logs and returns a URL that can be opened in a browser.
+
+```javascript
+screen.debug();
+logRoles(element);
+
+screen.logTestingPlaygroundURL();
+```
