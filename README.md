@@ -37,7 +37,7 @@ src/index.tsx
 import 'bootstrap/dist/css/bootstrap.min.css';
 ```
 
-## Simulating Data from Server
+## Simulating data from server
 
 Mock by intercepting requests on the network level: [https://mswjs.io/docs/basics/response-resolver](https://mswjs.io/docs/basics/response-resolver)
 
