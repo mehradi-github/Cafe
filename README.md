@@ -9,26 +9,8 @@ Install ESLint, Prettier, ESLint Plugin for Testing Library, ESLint Plugin for J
 Installing react-bootstrap Official Site: [https://react-bootstrap.github.io/getting-started/introduction](https://react-bootstrap.github.io/getting-started/introduction)
 
 ```sh
-npm install react-bootstrap bootstrap
-```
-
-index.html
-
-```html
-<script
-  src="https://unpkg.com/react/umd/react.production.min.js"
-  crossorigin
-></script>
-
-<script
-  src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
-  crossorigin
-></script>
-
-<script
-  src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
-  crossorigin
-></script>
+npm i react-bootstrap bootstrap
+npm i -D @types/react-bootstrap @types/bootstrap
 ```
 
 src/index.tsx
