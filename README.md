@@ -4,7 +4,7 @@ Simulating server response with Mock Service Worker
 
 ## Set up ESLint, Prettier and React Bootstrap
 
-Install ESLint, Prettier, ESLint Plugin for Testing Library, ESLint Plugin for Jest DOM: [https://github.com/mehradi-github/Jest-RTL](https://github.com/mehradi-github/Jest-RTL)
+Install ESLint, Prettier, ESLint Plugin for Testing Library, ESLint Plugin for Jest DOM: [https://github.com/mehradi-github/ref-jest-rtl](https://github.com/mehradi-github/ref-jest-rtl)
 
 Installing react-bootstrap Official Site: [https://react-bootstrap.github.io/getting-started/introduction](https://react-bootstrap.github.io/getting-started/introduction)
 
